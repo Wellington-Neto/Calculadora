@@ -83,6 +83,7 @@
             this.botaoVirgula.TabStop = false;
             this.botaoVirgula.Text = ",";
             this.botaoVirgula.UseVisualStyleBackColor = false;
+            this.botaoVirgula.Click += new System.EventHandler(this.botaoVirgula_Click);
             // 
             // botao0
             // 
@@ -110,6 +111,7 @@
             this.button3.TabStop = false;
             this.button3.Text = "+/-";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // botao1
             // 
@@ -128,7 +130,6 @@
             // botao2
             // 
             this.botao2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.botao2.CausesValidation = false;
             this.botao2.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.botao2.Location = new System.Drawing.Point(113, 397);
             this.botao2.Name = "botao2";
@@ -399,9 +400,9 @@
             this.visorSuperior.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.visorSuperior.Location = new System.Drawing.Point(7, 27);
             this.visorSuperior.Name = "visorSuperior";
-            this.visorSuperior.Size = new System.Drawing.Size(432, 26);
+            this.visorSuperior.Size = new System.Drawing.Size(24, 26);
             this.visorSuperior.TabIndex = 25;
-            this.visorSuperior.Text = "                                                                    0";
+            this.visorSuperior.Text = "0";
             // 
             // label1
             // 
@@ -418,13 +419,13 @@
             // 
             this.visorInferior.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.visorInferior.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.visorInferior.Font = new System.Drawing.Font("Microsoft Sans Serif", 45F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.visorInferior.Font = new System.Drawing.Font("Microsoft Sans Serif", 35F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.visorInferior.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.visorInferior.Location = new System.Drawing.Point(5, 56);
             this.visorInferior.Name = "visorInferior";
-            this.visorInferior.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.visorInferior.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.visorInferior.ShortcutsEnabled = false;
-            this.visorInferior.Size = new System.Drawing.Size(434, 68);
+            this.visorInferior.Size = new System.Drawing.Size(434, 53);
             this.visorInferior.TabIndex = 27;
             this.visorInferior.TabStop = false;
             this.visorInferior.Text = "0";
