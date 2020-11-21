@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Operacoes;
 
 
 
@@ -15,18 +16,10 @@ using System.Windows.Forms;
 namespace Calculadora
 {
     public partial class CalculadoraForms : Form
-    {        
-        public static Func<double, double, double> somar = (a, b) => a + b;
-        public static Func<double, double, double> subtrair = (a, b) => a - b;
-        public static Func<double, double, double> multiplicar = (a, b) => a * b;
-        public static Func<double, double, double> dividir = (a, b) => (a / b);
-        public static Func<double, double, double> potencia = (a, b) => Math.Pow(a, b);
-        public static Func<double, double> raiz = a => Math.Sqrt(a);
-        public static Func<double, double, double> porcentagem = (a, b) => multiplicar(dividir(b, 100), a);
-        public static Func<double, double, double> porcentagemSomar = (a, b) => somar(multiplicar(dividir(b, 100), a), a);
-        public static Func<double, double, double> porcentagemSubtrair = (a, b) => subtrair(a, multiplicar(dividir(b, 100), a));
-        public static Func<double, double, double> porcentagemMultiplicar = (a, b) => multiplicar(dividir(b, 100), a);
+    {
         string[] expressao = new string[3] { "0", "0", "0" };
+        
+        
         public CalculadoraForms()
         {
             InitializeComponent();
@@ -50,19 +43,19 @@ namespace Calculadora
                     
                     if(expressao[1] == "+")
                     {
-                        resultado = somar(double.Parse(expressao[0]), double.Parse(expressao[2]));
+                        resultado = Operacao.somar(double.Parse(expressao[0]), double.Parse(expressao[2]));
                     }
                     else if(expressao[1] == "-")
                     {
-                        resultado = subtrair(double.Parse(expressao[0]), double.Parse(expressao[2]));
+                        resultado = Operacao.subtrair(double.Parse(expressao[0]), double.Parse(expressao[2]));
                     }
                     else if(expressao[1] == "x")
                     {
-                        resultado = multiplicar(double.Parse(expressao[0]), double.Parse(expressao[2]));
+                        resultado = Operacao.multiplicar(double.Parse(expressao[0]), double.Parse(expressao[2]));
                     }
                     else if(expressao[1] == "÷")
                     {
-                        resultado = dividir(double.Parse(expressao[0]), double.Parse(expressao[2]));
+                        resultado = Operacao.dividir(double.Parse(expressao[0]), double.Parse(expressao[2]));
                         if(resultado.ToString() == "∞")
                         {
 
@@ -74,7 +67,7 @@ namespace Calculadora
                     }
                     else if(expressao[1] == "^")
                     {
-                        resultado = potencia(double.Parse(expressao[0]), double.Parse(expressao[2]));
+                        resultado = Operacao.potencia(double.Parse(expressao[0]), double.Parse(expressao[2]));
                     }
                     visorSuperior.Text = expressao[0] + " " + expressao[1] + " " + expressao[2] + " =";
                     visorInferior.Text = resultado.ToString();
@@ -84,7 +77,7 @@ namespace Calculadora
                     int escolha = 0;                  
                     if (expressao[1] != "0" && expressao[1] != "1") escolha = 2;
 
-                    resultado = raiz(double.Parse(expressao[escolha]));
+                    resultado = Operacao.raiz(double.Parse(expressao[escolha]));
                     if (escolha == 2)
                     {
                         visorSuperior.Text = expressao[0] + " " + expressao[1] + " √(" + expressao[2] + ") ";
@@ -105,18 +98,18 @@ namespace Calculadora
                 case "%":                       
                     if(expressao[1] == "+")
                     {
-                        resultado = porcentagemSomar(double.Parse(expressao[0]), double.Parse(expressao[2]));
-                        visorSuperior.Text = expressao[0] + " " + expressao[1] + " " + porcentagem(double.Parse(expressao[0]), double.Parse(expressao[2])) + " (" + expressao[2] + "%) =";
+                        resultado = Operacao.porcentagemSomar(double.Parse(expressao[0]), double.Parse(expressao[2]));
+                        visorSuperior.Text = expressao[0] + " " + expressao[1] + " " + Operacao.porcentagem(double.Parse(expressao[0]), double.Parse(expressao[2])) + " (" + expressao[2] + "%) =";
                     }
                     else if(expressao[1] == "-")
                     {
-                        resultado = porcentagemSubtrair(double.Parse(expressao[0]), double.Parse(expressao[2]));
-                        visorSuperior.Text = expressao[0] + " " + expressao[1] + " " + porcentagem(double.Parse(expressao[0]), double.Parse(expressao[2])) + " (" + expressao[2] + "%) =";
+                        resultado = Operacao.porcentagemSubtrair(double.Parse(expressao[0]), double.Parse(expressao[2]));
+                        visorSuperior.Text = expressao[0] + " " + expressao[1] + " " + Operacao.porcentagem(double.Parse(expressao[0]), double.Parse(expressao[2])) + " (" + expressao[2] + "%) =";
                     }
                     else if(expressao[1] == "x")
                     {
-                        resultado = porcentagemMultiplicar(double.Parse(expressao[0]), double.Parse(expressao[2]));
-                        visorSuperior.Text = expressao[0] + " " + expressao[1] + " " +dividir(double.Parse(expressao[2]), 100) +" (" + expressao[2] + "%) =";
+                        resultado = Operacao.porcentagemMultiplicar(double.Parse(expressao[0]), double.Parse(expressao[2]));
+                        visorSuperior.Text = expressao[0] + " " + expressao[1] + " " + Operacao.dividir(double.Parse(expressao[2]), 100) +" (" + expressao[2] + "%) =";
                     }
                     else
                     {
